@@ -1,3 +1,4 @@
+import logging
 from flask import Blueprint, current_app
 
 import sys
@@ -26,6 +27,7 @@ service = container.resolve('service')
 def get_matches():
     cache = current_app.cache
     cached_data = cache.get('match_data')
+    logging.info('Cached data: %s', cached_data)
     if cached_data is not None:
         return cached_data
 
