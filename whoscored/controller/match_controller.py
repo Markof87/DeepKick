@@ -24,13 +24,17 @@ service = container.resolve('service')
 
 
 @match_blueprint.route('/match', methods=['GET'])
-def get_matches():
+def get_match():
     cache = current_app.cache
     cached_data = cache.get('match_data')
-    logging.info('Cached data: %s', cached_data)
+    #logging.info('Cached data: %s', cached_data)
     if cached_data is not None:
         return cached_data
 
-    matches = service.get_match()
-    cache.set('match_data', matches, timeout=300)
-    return matches
+    match = service.get_match()
+    cache.set('match_data', match, timeout=300)
+    return match
+
+@match_blueprint.route('/match/formations', methods=['GET'])
+def get_match_formations():
+    return get_match()["away"]["formations"]

@@ -1,7 +1,5 @@
 import re
 import json
-import pandas as pd
-from bs4 import BeautifulSoup as soup
 from selenium.webdriver.common.by import By
 
 import sys
@@ -10,7 +8,6 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from shared.utils import createEventsDF
 
-from shared.scraper_service import main_url
 from whoscored.dao.base_scraper_dao import BaseScraperDAO
 import shared.scraper_service as ss
 
