@@ -8,15 +8,15 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from shared.utils import createEventsDF
 
+from config import WHOSCORED_URL_BASE
+
 from whoscored.dao.base_scraper_dao import BaseScraperDAO
 import shared.scraper_service as ss
 
 class MatchScraperDAO(BaseScraperDAO):
-    def __init__(self, url: str):
-        self.url = url
 
-    def fetch_data(self):
-        driver = ss.constructWhoscoredWebDriver(self.url)
+    def fetch_data(self, match_id):
+        driver = ss.constructWhoscoredWebDriver(WHOSCORED_URL_BASE + 'matches/' + str(match_id) + '/live')
         # get script data from page source
         script_content = driver.find_element(By.XPATH, '//*[@id="layout-wrapper"]/script[1]').get_attribute('innerHTML')
 

@@ -11,6 +11,7 @@ class ScrapingService:
     def get_match(self):
         return self.scraper_dao.fetch_data()
     
-    def get_match_formations(self):
-        return self.scraper_dao.fetch_data()["away"]["formations"]
+    def get_match_by_id(self, match_id):
+        return self.scraper_dao.fetch_data(match_id)
+    
 

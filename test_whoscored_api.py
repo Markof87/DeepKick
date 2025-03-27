@@ -5,7 +5,9 @@ import re
 import json
 import numpy as np
 from mplsoccer.pitch import Pitch, VerticalPitch
+from matplotlib.patches import FancyArrowPatch
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 pd.options.mode.chained_assignment = None
 from bs4 import BeautifulSoup as soup
 try:
@@ -156,11 +158,11 @@ def getMatchData(url, minimize_window=True):
     with open("passes.json", "w", encoding="utf-8") as f:
         json.dump(match_data, f, ensure_ascii=False, indent=4)
 
-    team = 'England'
-    teamId = 345
-    opponent = 'Latvia'
+    team = 'Germany'
+    teamId = 343
+    opponent = 'Italy'
 
-    getTeamTotalPasses(events_ls, teamId, team, opponent, pitch_color='#000000')
+    getTeamTotalPasses(events_ls, teamId, team, opponent, pitch_color='#FFFFFF')
 
     driver.close()
         
@@ -168,64 +170,56 @@ def getMatchData(url, minimize_window=True):
 
 def getTeamTotalPasses(events_df, teamId, team, opponent, pitch_color):
     """
-    
-
     Parameters
     ----------
     events_df : DataFrame of all events.
-    
     teamId : ID of the team, the passes of which are required.
-    
     team : Name of the team, the passes of which are required.
-    
     opponent : Name of opponent team.
-    
     pitch_color : color of the pitch.
-
-
     Returns
     -------
-    Pitch Plot.
+    Pitch Plot with enhanced aesthetics.
     """
-    
-    # Get Total Passes
-    passes_df = events_df.loc[events_df['type']=='Pass'].reset_index(drop=True)
-    
-    # Get Team Passes
+
+    font_path = 'resources/fonts/Druk-Wide-Web-Bold-Regular.ttf' 
+    custom_font = fm.FontProperties(fname=font_path)
+
+    # Filter passes
+    passes_df = events_df.loc[events_df['type'] == 'Pass'].reset_index(drop=True)
     team_passes = passes_df.loc[passes_df['teamId'] == teamId]
-        
-    successful_passes = team_passes.loc[team_passes['outcomeType']=='Successful'].reset_index(drop=True)
-    unsuccessful_passes = team_passes.loc[team_passes['outcomeType']=='Unsuccessful'].reset_index(drop=True)
-            
-    # Setup the pitch
-    pitch = Pitch(pitch_type='statsbomb', pitch_color=pitch_color, line_color='#c7d5cc')
-    fig, ax = pitch.draw(constrained_layout=True, tight_layout=False)
-    # fig.set_size_inches(14, 10)
     
-    # Plot the completed passes
+    successful_passes = team_passes.loc[team_passes['outcomeType'] == 'Successful'].reset_index(drop=True)
+    unsuccessful_passes = team_passes.loc[team_passes['outcomeType'] == 'Unsuccessful'].reset_index(drop=True)
+    
+    # Setup the pitch with a dark background
+    pitch = VerticalPitch(pitch_type='statsbomb', pitch_color=pitch_color, line_color='#4c566a', 
+                  linewidth=1.5, stripe=False)
+    fig, ax = pitch.draw(figsize=(6.5, 10))
+    
+    # Plot successful passes with a vibrant color
     pitch.arrows(successful_passes.x/100*120, 80-successful_passes.y/100*80,
-                 successful_passes.endX/100*120, 80-successful_passes.endY/100*80, width=1,
-                 headwidth=10, headlength=10, color='#ad993c', ax=ax, label='Completed')
+                 successful_passes.endX/100*120, 80-successful_passes.endY/100*80,
+                 width=1.5, headwidth=10, headlength=10, color='#32CD32', ax=ax, alpha=0.6, label="completed")
     
-    # Plot the other passes
+    # Plot unsuccessful passes with a faded color
     pitch.arrows(unsuccessful_passes.x/100*120, 80-unsuccessful_passes.y/100*80,
-                 unsuccessful_passes.endX/100*120, 80-unsuccessful_passes.endY/100*80, width=1,
-                 headwidth=6, headlength=5, headaxislength=12, color='#ba4f45', ax=ax, label='Blocked')
+                 unsuccessful_passes.endX/100*120, 80-unsuccessful_passes.endY/100*80,
+                 width=1.5, headwidth=8, headlength=8, color='#FF0000', ax=ax, alpha=0.6, label="blocked")
     
-    # setup the legend
-    ax.legend(facecolor=pitch_color, handlelength=5, edgecolor='None', fontsize=8, loc='upper left', shadow=True, labelcolor='white')
+    ax.legend(facecolor=pitch_color, handlelength=5, edgecolor='None', fontsize=8, loc='lower left', shadow=True, labelcolor='black')
     
-    # Set the title
-    fig.suptitle(f'{team} Passes vs {opponent}', y=1, fontsize=15)
+    # Add title
+    fig.text(0.1, 0.95, f'{team} Passes vs {opponent}', fontsize=16, color='black', fontweight='bold', fontproperties=custom_font)
+    fig.text(0.1, 0.93, 'Data Source: WhoScored/Opta', fontsize=10, color='black', fontstyle='italic', fontproperties=custom_font)
+
+    orientation_arrow = FancyArrowPatch((-3, 40), (-3, 80), arrowstyle='-|>', color='black', lw=2, mutation_scale=20)
+    ax.add_patch(orientation_arrow)
     
-    
-    # Set the subtitle
-    ax.set_title('Data : Whoscored/Opta', fontsize=8, loc='right', fontstyle='italic', fontweight='bold')
-    
-    print("sono qui")
-    # Set the figure facecolor
-    
-    fig.set_facecolor(pitch_color)
+    # Set background color
+    fig.patch.set_facecolor(pitch_color)
+    plt.savefig("match_pass_map.png", dpi=300, bbox_inches='tight')
+
     plt.show()
 
 def createEventsDF(data):
@@ -326,4 +320,4 @@ def createEventsDF(data):
 
     return events_df
 
-getMatchData(main_url + 'matches/1874074/live/international-world-cup-qualification-uefa-2025-2026-england-latvia')
+getMatchData(main_url + 'matches/1872048/live/international-uefa-nations-league-a-2024-2025-germany-italy')
