@@ -1,5 +1,5 @@
 import logging
-from flask import Blueprint, current_app, jsonify
+from flask import Blueprint, jsonify
 
 import sys
 import os
@@ -19,30 +19,16 @@ service = container.resolve('service')
 
 @match_blueprint.route('/match/<int:match_id>', methods=['GET'])
 def get_match_by_id(match_id):
-    cache = current_app.cache
-    cached_data = cache.get(f'match_data_{match_id}')
-    #logging.info('Cached data: %s', cached_data)
-    if cached_data is not None:
-        return cached_data
-
-    match = service.get_match_by_id(match_id)
-    cache.set(f'match_data_{match_id}', match, timeout=86400)
-    return match
+    return service.get_match_by_id(match_id)
 
 @match_blueprint.route('/match/<int:match_id>/formations', methods=['GET'])
-def get_match_formations_by_id(match_id):
-    match_data = get_match_by_id(match_id)
-    formations = {
-        "home": match_data["home"]["formations"],
-        "away": match_data["away"]["formations"]
-    }
-    return jsonify(formations)
+def get_match_formations(match_id):
+    return service.get_match_formations(match_id)
 
 @match_blueprint.route('/match/<int:match_id>/players', methods=['GET'])
-def get_match_players_by_id(match_id):
-    match_data = get_match_by_id(match_id)
-    players = {
-        "home": match_data["home"]["players"],
-        "away": match_data["away"]["players"]
-    }
-    return jsonify(players)
+def get_match_players(match_id):
+    return service.get_match_players(match_id)
+
+@match_blueprint.route('/match/<int:match_id>/player/<int:player_id>', methods=['GET'])
+def get_match_player_by_id(match_id, player_id):
+    return service.get_match_player_by_id(match_id, player_id)

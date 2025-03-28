@@ -2,6 +2,14 @@ import warnings
 import numpy as np
 import pandas as pd
 
+def find_player(players_data, player_id, player_id_field):
+    for player in players_data:
+        if player[player_id_field] == player_id:
+            return player
+
+    return None
+
+
 def createEventsDF(data):
     events = data['events']
     for event in events:
