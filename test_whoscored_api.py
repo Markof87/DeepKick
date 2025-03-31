@@ -168,6 +168,41 @@ def getMatchData(url, minimize_window=True):
         
     return match_data
 
+def findMatches(url, minimize_window=True):
+
+    #browser_options = ChromeOptions()
+    browser_options = EdgeOptions()
+    browser_options.add_argument("--headless=new")  # Nuova modalità headless più compatibile
+    browser_options.add_argument("--disable-blink-features=AutomationControlled")  # Nasconde Selenium
+    browser_options.add_argument("--window-size=1920x1080")  # Imposta una finestra visibile
+    browser_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")  # Simula un utente reale
+    browser_options.add_argument("--disable-gpu")  
+    browser_options.add_argument("--no-sandbox")  
+    browser_options.add_argument("--disable-dev-shm-usage")  
+    browser_options.add_argument("--enable-unsafe-swiftshader")  
+
+    #driver = webdriver.Chrome(options=browser_options)
+    driver = webdriver.Edge(options=browser_options)
+
+    # Nascondere il WebDriver
+    driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+
+    if minimize_window:
+        driver.minimize_window()
+
+    try:
+        driver.get(url)
+    except WebDriverException:
+        driver.get(url)
+
+    # get script data from page source
+    script_content = driver.find_element(By.XPATH, '//*[@id="layout-wrapper"]/script[1]').get_attribute('innerHTML')
+
+
+    # clean script content
+    script_content = re.sub(r"[\n\t]*", "", script_content)
+    print(script_content)
+
 def getTeamTotalPasses(events_df, teamId, team, opponent, pitch_color):
     """
     Parameters
@@ -320,4 +355,5 @@ def createEventsDF(data):
 
     return events_df
 
-getMatchData(main_url + 'matches/1872048/live/international-uefa-nations-league-a-2024-2025-germany-italy')
+#getMatchData(main_url + 'matches/1872048/live/international-uefa-nations-league-a-2024-2025-germany-italy')
+findMatches(main_url)[0]

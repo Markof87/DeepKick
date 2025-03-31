@@ -7,9 +7,29 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from whoscored.dao.match_scraper_dao import MatchScraperDAO
 from shared.utils import find_player
 
-class ScrapingService:
+class MatchScrapingService:
     def __init__(self, scraper_dao: MatchScraperDAO):
         self.scraper_dao = scraper_dao
+
+    def get_all_matches_today(self):
+        cache = current_app.cache
+        cached_data = cache.get('all_matches_today')
+        if cached_data is not None:
+            return cached_data
+        
+        all_matches_today = self.scraper_dao.fetch_data_matches()
+        cache.set('all_matches_today', all_matches_today, timeout=86400)
+        return all_matches_today
+    
+    def get_all_matches_by_tournament(self, tournament_id):
+        cache = current_app.cache
+        cached_data = cache.get(f'all_matches_by_tournament_{tournament_id}')
+        if cached_data is not None:
+            return cached_data
+        
+        all_matches_by_tournament = self.scraper_dao.fetch_data_matches_by_tournament(tournament_id)
+        cache.set(f'all_matches_by_tournament_{tournament_id}', all_matches_by_tournament, timeout=86400)
+        return all_matches_by_tournament
 
     def get_match(self):
         return self.scraper_dao.fetch_data()
@@ -48,5 +68,11 @@ class ScrapingService:
             return jsonify({"error": "Player not found"}), 404
         
         return jsonify(player)
+    
+    def get_match_player_events(self, match_id, player_id):
+        match_data = self.get_match_by_id(match_id)
+        
+        player_events = [event for event in match_data["events"] if event.get("playerId") == player_id]
+        return player_events
     
 
