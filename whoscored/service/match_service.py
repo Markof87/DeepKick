@@ -75,4 +75,12 @@ class MatchScrapingService:
         player_events = [event for event in match_data["events"] if event.get("playerId") == player_id]
         return player_events
     
+    def get_match_player_event_by_name(self, match_id, player_id, event_name):
+        match_data = self.get_match_by_id(match_id)
+        
+        player_events = [event for event in match_data["events"] if event.get("playerId") == player_id and event["type"]["displayName"] == event_name]
+        if not player_events:
+            return jsonify({"error": "Event not found"}), 404
+        return player_events
+    
 

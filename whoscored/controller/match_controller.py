@@ -44,3 +44,23 @@ def get_match_player_by_id(match_id, player_id):
 @match_blueprint.route('/match/<int:match_id>/player/<int:player_id>/events', methods=['GET'])
 def get_match_player_events(match_id, player_id):
     return service.get_match_player_events(match_id, player_id)
+
+"""
+event_name può essere:
+
+- Pass
+- SavedShot
+- MissedShots
+- Tackle
+- Challenge
+- CornerAwarded
+- BallRecovery
+- OffsideGiven
+- Foul
+- Aerial
+
+"""
+
+@match_blueprint.route('/match/<int:match_id>/player/<int:player_id>/event/<event_name>', methods=['GET'])
+def get_match_player_event_by_name(match_id, player_id, event_name):
+    return service.get_match_player_event_by_name(match_id, player_id, event_name)
