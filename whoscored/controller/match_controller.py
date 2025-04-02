@@ -1,5 +1,4 @@
-import logging
-from flask import Blueprint, jsonify
+from flask import Blueprint
 
 import sys
 import os
