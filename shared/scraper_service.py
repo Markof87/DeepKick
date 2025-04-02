@@ -11,29 +11,28 @@ main_url = 'https://1xbet.whoscored.com/'
 
 def initializeSeleniumScraperOptions():
 
-    # Imposta la directory temporanea per la cache
     temp_dir = '/tmp/selenium_cache'
     os.makedirs(temp_dir, exist_ok=True)
 
-    # Configura le opzioni del browser Edge
-    browser_options = EdgeOptions()
-    browser_options.add_argument("--headless=new")  # Modalità headless
+    browser_options = ChromeOptions()
+    #browser_options = EdgeOptions()
+    browser_options.add_argument("--headless=new")  # Nuova modalità headless più compatibile
     browser_options.add_argument("--disable-blink-features=AutomationControlled")  # Nasconde Selenium
     browser_options.add_argument("--window-size=1920x1080")  # Imposta una finestra visibile
-    browser_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")  # User agent personalizzato
-    browser_options.add_argument("--disable-gpu")
-    browser_options.add_argument("--no-sandbox")
-    browser_options.add_argument("--disable-dev-shm-usage")
+    browser_options.add_argument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")  # Simula un utente reale
+    browser_options.add_argument("--disable-gpu")  
+    browser_options.add_argument("--no-sandbox")  
+    browser_options.add_argument("--disable-dev-shm-usage")  
     browser_options.add_argument("--enable-unsafe-swiftshader")
-    browser_options.add_argument(f'--user-data-dir={temp_dir}')  # Directory per i dati utente
-    browser_options.add_argument(f'--disk-cache-dir={temp_dir}')  # Directory per la cache su disco
+    browser_options.add_argument(f'--user-data-dir={temp_dir}')
+    browser_options.add_argument(f'--disk-cache-dir={temp_dir}')
 
     return browser_options
 
 def constructWhoscoredWebDriver(url=main_url, minimize_window=True):  
 
-    #driver = webdriver.Chrome(options=initializeSeleniumScraperOptions())
-    driver = webdriver.Edge(options=initializeSeleniumScraperOptions())
+    driver = webdriver.Chrome(options=initializeSeleniumScraperOptions())
+    #driver = webdriver.Edge(options=initializeSeleniumScraperOptions())
     print(url)
 
     # Nascondere il WebDriver
