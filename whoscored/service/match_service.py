@@ -11,6 +11,10 @@ class MatchScrapingService:
     def __init__(self, scraper_dao: MatchScraperDAO):
         self.scraper_dao = scraper_dao
 
+    def get_all_tournaments(self):        
+        all_tournaments = self.scraper_dao.fetch_top_tournaments()
+        return all_tournaments
+
     def get_all_matches_today(self):
         cache = current_app.cache
         cached_data = cache.get('all_matches_today')

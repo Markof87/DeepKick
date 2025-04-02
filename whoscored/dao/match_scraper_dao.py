@@ -15,6 +15,9 @@ import shared.scraper_service as ss
 
 class MatchScraperDAO(BaseScraperDAO):
 
+    def fetch_top_tournaments(self):
+        return fetch_top_tournaments()
+
     def fetch_data(self, match_id):
         driver = ss.constructWhoscoredWebDriver(WHOSCORED_URL_BASE + 'matches/' + str(match_id) + '/live')
         # get script data from page source

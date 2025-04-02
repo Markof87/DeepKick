@@ -16,6 +16,10 @@ container.register('service', MatchScrapingService(container.resolve('dao')))
     
 service = container.resolve('service')
 
+@match_blueprint.route('/tournaments', methods=['GET'])
+def get_all_tournaments():
+    return service.get_all_tournaments()
+
 @match_blueprint.route('/matchestoday', methods=['GET'])
 def get_all_matches_today():
     return service.get_all_matches_today()
