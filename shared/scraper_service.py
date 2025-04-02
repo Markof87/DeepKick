@@ -1,3 +1,5 @@
+import os
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
@@ -8,6 +10,10 @@ from selenium.common.exceptions import NoSuchElementException, WebDriverExceptio
 main_url = 'https://1xbet.whoscored.com/'
 
 def initializeSeleniumScraperOptions():
+
+    temp_dir = '/tmp/selenium_cache'
+    os.makedirs(temp_dir, exist_ok=True)
+
     #browser_options = ChromeOptions()
     browser_options = EdgeOptions()
     browser_options.add_argument("--headless=new")  # Nuova modalità headless più compatibile
@@ -18,6 +24,8 @@ def initializeSeleniumScraperOptions():
     browser_options.add_argument("--no-sandbox")  
     browser_options.add_argument("--disable-dev-shm-usage")  
     browser_options.add_argument("--enable-unsafe-swiftshader")
+    browser_options.add_argument(f'--user-data-dir={temp_dir}')
+    browser_options.add_argument(f'--disk-cache-dir={temp_dir}')
 
     return browser_options
 
