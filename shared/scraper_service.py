@@ -1,21 +1,16 @@
-import os
-
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.edge.options import Options as EdgeOptions
 from selenium.webdriver.common.by import By
-
 from selenium.common.exceptions import NoSuchElementException, WebDriverException
 
-main_url = 'https://1xbet.whoscored.com/'
+import config
+
+main_url = config.WHOSCORED_URL_BASE
 
 def initializeSeleniumScraperOptions():
-
-    temp_dir = '/tmp/selenium_cache'
-    os.makedirs(temp_dir, exist_ok=True)
-
-    browser_options = ChromeOptions()
-    #browser_options = EdgeOptions()
+    #browser_options = ChromeOptions()
+    browser_options = EdgeOptions()
     browser_options.add_argument("--headless=new")  # Nuova modalità headless più compatibile
     browser_options.add_argument("--disable-blink-features=AutomationControlled")  # Nasconde Selenium
     browser_options.add_argument("--window-size=1920x1080")  # Imposta una finestra visibile
@@ -24,16 +19,13 @@ def initializeSeleniumScraperOptions():
     browser_options.add_argument("--no-sandbox")  
     browser_options.add_argument("--disable-dev-shm-usage")  
     browser_options.add_argument("--enable-unsafe-swiftshader")
-    browser_options.add_argument(f'--user-data-dir={temp_dir}')
-    browser_options.add_argument(f'--disk-cache-dir={temp_dir}')
 
     return browser_options
 
 def constructWhoscoredWebDriver(url=main_url, minimize_window=True):  
 
-    driver = webdriver.Chrome(options=initializeSeleniumScraperOptions())
-    #driver = webdriver.Edge(options=initializeSeleniumScraperOptions())
-    print(url)
+    #driver = webdriver.Chrome(options=initializeSeleniumScraperOptions())
+    driver = webdriver.Edge(options=initializeSeleniumScraperOptions())
 
     # Nascondere il WebDriver
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")

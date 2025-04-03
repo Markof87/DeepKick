@@ -20,9 +20,9 @@ service = container.resolve('service')
 def get_all_tournaments():
     return service.get_all_tournaments()
 
-@match_blueprint.route('/matchestoday', methods=['GET'])
-def get_all_matches_today():
-    return service.get_all_matches_today()
+@match_blueprint.route('/matchesbydate/<int:date>', methods=['GET'])
+def get_all_matches_by_date(date):
+    return service.get_all_matches_by_date(date)
 
 @match_blueprint.route('/matches/<int:tournament_id>', methods=['GET'])
 def get_all_matches_by_tournament(tournament_id):

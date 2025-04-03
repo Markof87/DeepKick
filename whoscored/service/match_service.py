@@ -15,15 +15,15 @@ class MatchScrapingService:
         all_tournaments = self.scraper_dao.fetch_top_tournaments()
         return all_tournaments
 
-    def get_all_matches_today(self):
+    def get_all_matches_by_date(self, date):
         cache = current_app.cache
-        cached_data = cache.get('all_matches_today')
+        cached_data = cache.get(f'all_matches_by_date_{date}')
         if cached_data is not None:
             return cached_data
         
-        all_matches_today = self.scraper_dao.fetch_data_matches()
-        cache.set('all_matches_today', all_matches_today, timeout=86400)
-        return all_matches_today
+        all_matches = self.scraper_dao.fetch_date_matches(date)
+        cache.set(f'all_matches_by_tournament_{date}', all_matches, timeout=86400)
+        return all_matches
     
     def get_all_matches_by_tournament(self, tournament_id):
         cache = current_app.cache

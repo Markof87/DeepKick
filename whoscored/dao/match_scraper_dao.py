@@ -1,5 +1,6 @@
 import re
 import json
+import requests
 from selenium.webdriver.common.by import By
 
 import sys
@@ -17,6 +18,14 @@ class MatchScraperDAO(BaseScraperDAO):
 
     def fetch_top_tournaments(self):
         return fetch_top_tournaments()
+    
+    def fetch_date_matches(self, date):
+
+        driver = ss.constructWhoscoredWebDriver(WHOSCORED_URL_BASE + f'livescores/data?d={date}&isSummary=false')
+        metadata = driver.find_element(By.TAG_NAME, 'body').get_attribute('innerHTML')
+        match_data = json.loads(metadata[metadata.index('{'):])
+        
+        return match_data
 
     def fetch_data(self, match_id):
         driver = ss.constructWhoscoredWebDriver(WHOSCORED_URL_BASE + 'matches/' + str(match_id) + '/live')
