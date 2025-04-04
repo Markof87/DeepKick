@@ -48,6 +48,19 @@ class MatchScrapingService:
         cache.set(f'match_data_{match_id}', match_data, timeout=86400)
         return match_data
     
+    def get_match_team_events(self, match_id, team_id):
+        match_data = self.get_match_by_id(match_id)
+        events = [event for event in match_data["events"] if event["teamId"]== team_id]
+        return events
+    
+    def get_match_team_event_by_name(self, match_id, team_id, event_name):
+        match_data = self.get_match_team_events(match_id, team_id)
+        events = [event for event in match_data if event["type"]["displayName"] == event_name]
+        if events is None:
+            return jsonify({"error": "Match events not found"}), 404
+        
+        return jsonify(events)
+    
     def get_match_formations(self, match_id):
         match_data = self.get_match_by_id(match_id)
         formations = {

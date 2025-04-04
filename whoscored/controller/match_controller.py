@@ -32,6 +32,14 @@ def get_all_matches_by_tournament(tournament_id):
 def get_match_by_id(match_id):
     return service.get_match_by_id(match_id)
 
+@match_blueprint.route('/match/<int:match_id>/team/<int:team_id>/events', methods=['GET'])
+def get_match_team_events(match_id, team_id):
+    return service.get_match_team_events(match_id, team_id)
+
+@match_blueprint.route('/match/<int:match_id>/team/<int:team_id>/event/<event_name>', methods=['GET'])
+def get_match_team_event_by_name(match_id, team_id, event_name):
+    return service.get_match_team_event_by_name(match_id, team_id, event_name)
+
 @match_blueprint.route('/match/<int:match_id>/formations', methods=['GET'])
 def get_match_formations(match_id):
     return service.get_match_formations(match_id)
