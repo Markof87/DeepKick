@@ -6,6 +6,7 @@ from flask import current_app, jsonify
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from whoscored.dao.match_scraper_dao import MatchScraperDAO
 from shared.utils import find_player
+from collections import Counter
 
 class MatchScrapingService:
     def __init__(self, scraper_dao: MatchScraperDAO):
@@ -48,9 +49,29 @@ class MatchScrapingService:
         cache.set(f'match_data_{match_id}', match_data, timeout=86400)
         return match_data
     
+    def get_match_formation(self, match_id, team):
+        match_data = self.get_match_by_id(match_id)
+        formation_player_ids = match_data[team]["formations"][0]["playerIds"]
+        players = match_data[team]["players"]
+
+        # Map playerIds in formations to the corresponding player objects
+        formation_players = [player for player in players if player["playerId"] in formation_player_ids]
+        return formation_players
+
+        # Extend the match_data with the mapped formation players
+        match_data[team]["formations"][0]["players"] = formation_players
+        return match_data
+    
     def get_match_team_events(self, match_id, team_id):
         match_data = self.get_match_by_id(match_id)
         events = [event for event in match_data["events"] if event["teamId"]== team_id]
+        return events
+    
+    def get_match_team_events_count(self, match_id, team_id):
+        match_data = self.get_match_by_id(match_id)
+        events = [event for event in match_data["events"] if event["teamId"]== team_id]
+        event_counts = {event_name: {"count": count} for event_name, count in Counter(event["type"]["displayName"] for event in events).items()}
+        return event_counts
         return events
     
     def get_match_team_event_by_name(self, match_id, team_id, event_name):
