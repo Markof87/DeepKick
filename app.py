@@ -1,6 +1,7 @@
 import logging
 from flask import Flask, send_from_directory
 from flask_caching import Cache
+from flask_cors import CORS
 
 import sys
 import os
@@ -19,6 +20,7 @@ from whoscored.controller.match_controller import match_blueprint
 
 app = Flask(__name__)
 
+CORS(app)
 app.config.from_pyfile('config.py')
 
 cache = Cache(app)
