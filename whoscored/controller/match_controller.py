@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 
 import sys
 import os
@@ -93,6 +93,18 @@ event_name può essere:
 def get_match_player_event_by_name(match_id, player_id, event_name):
     return service.get_match_player_event_by_name(match_id, player_id, event_name)
 
-@match_blueprint.route('/match/<int:match_id>/player/<int:player_id>/event/<event_name>/count', methods=['POST'])
-def image_report_creator(url, event_name, name, opponent):
-    return service.image_report_creator(url, event_name, name, opponent)
+@match_blueprint.route('/matchreport', methods=['POST'])
+def image_report_creator():
+    data = request.json 
+    url = data.get('url')
+    event_name = data.get('event_name')
+    name = data.get('name')
+    opponent = data.get('opponent')
+
+    result = service.image_report_creator(url, event_name, name, opponent)
+
+    if result is None:
+        return {"error": "Image report creation failed"}, 500
+
+    return {"message": "Image report created successfully", "data": result}, 200
+
