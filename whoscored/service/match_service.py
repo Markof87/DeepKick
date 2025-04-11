@@ -5,6 +5,7 @@ from flask import current_app, jsonify
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from whoscored.dao.match_scraper_dao import MatchScraperDAO
+from shared.utils import image_creator
 from shared.utils import find_player
 from collections import Counter
 
@@ -120,5 +121,8 @@ class MatchScrapingService:
         if not player_events:
             return jsonify({"error": "Event not found"}), 404
         return player_events
+    
+    def image_report_creator(self, url, event_name, name, opponent):
+        image_creator(url, event_name, name, opponent)
     
 
