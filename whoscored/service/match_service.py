@@ -123,6 +123,6 @@ class MatchScrapingService:
         return player_events
     
     def image_report_creator(self, url, event_name, name, opponent):
-        image_creator(url, event_name, name, opponent)
+        return image_creator(url, event_name, name, opponent)
     
 

@@ -50,6 +50,7 @@ def image_creator(url, event_name, name, opponent):
         print("Errore: Il buffer dell'immagine è vuoto.")
         exit(1)
 
+    return match_data
 
 def compress_image(input_image_bytes, target_size_kb=976.56, initial_resize_factor=1.0):
     """
