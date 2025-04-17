@@ -2,11 +2,14 @@ import json
 import sys
 import os
 import requests
+import re
+
+from datetime import datetime
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from shared.reports import getEventReport
 
-import webbrowser
+from urllib.parse import urlparse
 from PIL import Image
 from io import BytesIO
 
@@ -29,6 +32,8 @@ def find_player(players_data, player_id, player_id_field):
 
 def image_creator(url, event_name, name, opponent):
 
+    image_id = make_image_id_from_url(url)
+
     response = requests.get(url)
     # Assicurati che la richiesta sia andata a buon fine
     if response.status_code == 200:
@@ -36,21 +41,25 @@ def image_creator(url, event_name, name, opponent):
     else:
         print(f"Errore nella richiesta: {response.status_code}")
 
+    result = {
+        'image_id': image_id,
+        'match_data': match_data
+    }
+
     img_buffer = getEventReport(match_data, event_name, name, opponent, pitch_color='#FFFFFF')
     img_buffer.seek(0)
     image_data = compress_image(img_buffer.read(), target_size_kb=976.56, initial_resize_factor=1.0)
 
-    with open('temp_image.png', 'wb') as temp_file:
+    with open(f'{image_id}.png', 'wb') as temp_file:
         temp_file.write(image_data)
-    webbrowser.open('temp_image.png')
 
-    print("Immagine salvata come debug_image.png per verifica.")
+    print("Immagine salvata")
 
     if not image_data:
         print("Errore: Il buffer dell'immagine è vuoto.")
         exit(1)
 
-    return match_data
+    return result
 
 def compress_image(input_image_bytes, target_size_kb=976.56, initial_resize_factor=1.0):
     """
@@ -87,3 +96,25 @@ def compress_image(input_image_bytes, target_size_kb=976.56, initial_resize_fact
     
     print("Impossibile comprimere l'immagine al di sotto del limite richiesto.")
     return None
+
+def make_image_id_from_url(url: str) -> str:
+    parsed = urlparse('http://localhost:5000/match/1894997/player/99487/event/Pass')
+    pattern = (
+        r'^/match/(?P<match_id>\d+)'
+        r'(?:/player/(?P<player_id>\d+))?' 
+        r'/event/(?P<event>\w+)$'
+    )
+    m = re.match(pattern, parsed.path)
+    if not m:
+        raise ValueError(f"URL non valido: {url!r}")
+    
+    parts = [m.group('match_id')]
+    if m.group('player_id'):
+        parts.append(m.group('player_id'))
+    parts.append(m.group('event'))
+    
+    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+    parts.append(timestamp)
+    
+    # 4) Unisco con '-'
+    return '_'.join(parts)

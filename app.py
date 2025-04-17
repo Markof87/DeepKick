@@ -1,5 +1,5 @@
 import logging
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, send_file
 from flask_caching import Cache
 from flask_cors import CORS
 
@@ -31,6 +31,11 @@ app.register_blueprint(match_blueprint)
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+@app.route('/temp_image/<image_id>')
+def temp_image(image_id):
+    filename = f"{image_id}.png"
+    return send_file(filename, mimetype='image/png')
 
 if __name__ == '__main__':
     app.run(debug=True)

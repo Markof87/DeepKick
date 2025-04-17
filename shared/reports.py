@@ -2,6 +2,8 @@ from io import BytesIO
 
 from mplsoccer.pitch import VerticalPitch
 from matplotlib.patches import FancyArrowPatch
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 import pandas as pd
@@ -40,6 +42,9 @@ def getEventReport(match_data, event_name, name, opponent, pitch_color):
     # Add title
     fig.text(0.1, 0.95, f'{name} {event_name} vs {opponent}', fontsize=16, color='black', fontweight='bold', fontproperties=custom_font)
     fig.text(0.1, 0.93, 'Data Source: WhoScored/Opta', fontsize=8, color='black', fontstyle='italic', fontproperties=custom_font)
+
+    orientation_arrow = FancyArrowPatch((-3, 40), (-3, 80), arrowstyle='-|>', color='black', lw=2, mutation_scale=20)
+    ax.add_patch(orientation_arrow)
     
     # Set background color
     fig.patch.set_facecolor(pitch_color)
@@ -48,6 +53,7 @@ def getEventReport(match_data, event_name, name, opponent, pitch_color):
     img_buffer = BytesIO()
     plt.savefig(img_buffer, format='png', dpi=300, bbox_inches='tight')
     img_buffer.seek(0)  
-    plt.close(fig)  
+    #plt.close(fig)  
+    plt.close('all')
 
     return img_buffer
