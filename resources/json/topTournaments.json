@@ -3,122 +3,146 @@
         {
             "id": 124,
             "region": 247,
-            "tournament_name": "European Championship"
+            "tournament_name": "European Championship",
+            "priority": 1
         },
         {
             "id": 3,
             "region": 81,
-            "tournament_name": "Bundesliga"
+            "tournament_name": "Bundesliga",
+            "priority": 8
         },
         {
             "id": 8,
             "region": 252,
-            "tournament_name": "English League One"
+            "tournament_name": "English League One",
+            "priority": 19
         },
         {
             "id": 21,
             "region": 177,
-            "tournament_name": "Liga Portugal"
+            "tournament_name": "Liga Portugal",
+            "priority": 12
         },
         {
             "id": 77,
             "region": 182,
-            "tournament_name": "Russian Premier League"
+            "tournament_name": "Russian Premier League",
+            "priority": 23
         },
         {
             "id": 94,
             "region": 247,
-            "tournament_name": "Copa America"
+            "tournament_name": "Copa America",
+            "priority": 2
         },
         {
             "id": 12,
             "region": 250,
-            "tournament_name": "UEFA Champions League"
+            "tournament_name": "UEFA Champions League",
+            "priority": 3
         },
         {
             "id": 9,
             "region": 252,
-            "tournament_name": "English League Two"
+            "tournament_name": "English League Two",
+            "priority": 21
         },
         {
             "id": 20,
             "region": 253,
-            "tournament_name": "Scottish Premiership"
+            "tournament_name": "Scottish Premiership",
+            "priority": 17
         },
         {
             "id": 18,
             "region": 22,
-            "tournament_name": "Jupiler Pro League"
+            "tournament_name": "Jupiler Pro League",
+            "priority": 16
         },
         {
             "id": 2,
             "region": 252,
-            "tournament_name": "English Premier League"
+            "tournament_name": "English Premier League",
+            "priority": 5
         },
         {
             "id": 30,
             "region": 250,
-            "tournament_name": "UEFA Europa League"
+            "tournament_name": "UEFA Europa League",
+            "priority": 4
         },
         {
             "id": 26,
             "region": 252,
-            "tournament_name": "FA Cup"
+            "tournament_name": "FA Cup",
+            "priority": 10
         },
         {
             "id": 95,
             "region": 31,
-            "tournament_name": "Brasileirao"
+            "tournament_name": "Brasileirao",
+            "priority": 20
         },
         {
             "id": 6,
             "region": 81,
-            "tournament_name": "2.Bundesliga"
+            "tournament_name": "2.Bundesliga",
+            "priority": 18
         },
         {
             "id": 4,
             "region": 206,
-            "tournament_name": "LaLiga"
+            "tournament_name": "LaLiga",
+            "priority": 6
         },
         {
             "id": 22,
             "region": 74,
-            "tournament_name": "Ligue 1"
+            "tournament_name": "Ligue 1",
+            "priority": 9
         },
         {
             "id": 85,
             "region": 233,
-            "tournament_name": "Major League Soccer"
+            "tournament_name": "Major League Soccer",
+            "priority": 22
         },
         {
             "id": 17,
             "region": 225,
-            "tournament_name": "Turkish Super Lig"
+            "tournament_name": "Turkish Super Lig",
+            "priority": 15
         },
         {
             "id": 739,
             "region": 252,
-            "tournament_name": "England Women's Super League"
+            "tournament_name": "England Women's Super League",
+            "priority": 24
         },
         {
             "id": 5,
             "region": 108,
-            "tournament_name": "Italian Serie A"
+            "tournament_name": "Italian Serie A",
+            "priority": 7
         },
         {
             "id": 7,
             "region": 252,
-            "tournament_name": "English Championship"
+            "tournament_name": "English Championship",
+            "priority": 14
         },
         {
             "id": 13,
             "region": 155,
-            "tournament_name": "Eredivisie"
+            "tournament_name": "Eredivisie",
+            "priority": 13
         },
         {
             "id": 29,
             "region": 252,
-            "tournament_name": "English League Cup"
+            "tournament_name": "English League Cup",
+            "priority": 11
         }
     ]
 }

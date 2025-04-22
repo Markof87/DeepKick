@@ -24,7 +24,7 @@ class MatchScrapingService:
             return cached_data
         
         all_matches = self.scraper_dao.fetch_date_matches(date)
-        cache.set(f'all_matches_by_tournament_{date}', all_matches, timeout=86400)
+        cache.set(f'all_matches_by_date_{date}', all_matches, timeout=86400)
         return all_matches
     
     def get_all_matches_by_tournament(self, tournament_id):
