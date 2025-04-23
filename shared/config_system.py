@@ -1,0 +1,1 @@
+SOCCERDATA_DIR = "C:/Users/Markof/soccerdata"
