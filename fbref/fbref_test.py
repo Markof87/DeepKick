@@ -17,4 +17,6 @@ if not league_dict_path.exists():
     with league_dict_path.open('w', encoding='utf-8') as dest_file:
         json.dump(data, dest_file, indent=4)
 
-print(sd.FBref.available_leagues())
+season = sd.FBref("ESP-La Liga", "2425")
+
+print(season.read_team_season_stats().to_json())

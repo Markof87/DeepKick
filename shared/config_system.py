@@ -1,1 +1,1 @@
-SOCCERDATA_DIR = "C:/Users/Markof/soccerdata"
+SOCCERDATA_DIR = "C:/Users/fabianim/soccerdata"

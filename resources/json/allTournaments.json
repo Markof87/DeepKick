@@ -36,10 +36,10 @@
     "ClubElo": "BRA_1",
     "MatchHistory": "BRA",
     "SoFIFA": "[Brazil] Serie A",
-    "FBref": "Campeonato Brasileiro Série A",
+    "FBref": "Campeonato Brasileiro S\u00e9rie A",
     "ESPN": "bra.1",
     "FiveThirtyEight": "brasileirao",
-    "WhoScored": "Brazil - Brasileirão",
+    "WhoScored": "Brazil - Brasileir\u00e3o",
     "season_start": "Apr",
     "season_end": "Dec"
   },
@@ -47,7 +47,7 @@
     "ClubElo": "COL_1",
     "MatchHistory": "COL",
     "SoFIFA": "[Colombia] Liga BetPlay",
-    "FBref": "Categoría Primera A",
+    "FBref": "Categor\u00eda Primera A",
     "ESPN": "col.1",
     "FiveThirtyEight": "liga-betplay",
     "WhoScored": "Colombia - Categoria Primera A",
@@ -131,18 +131,29 @@
     "season_start": "Apr",
     "season_end": "Nov"
   },
-   "ARG-Primera División Argentina": {
+  "SCO-Scottish Premiership": {
+    "ClubElo": "SCO_1",
+    "MatchHistory": "SCO",
+    "SoFIFA": "[Scotland] Premiership",
+    "FBref": "Scottish Premiership",
+    "ESPN": "sco.1",
+    "FiveThirtyEight": "premiership",
+    "WhoScored": "Scottish - Premiership",
+    "season_start": "Aug",
+    "season_end": "May"
+  },
+  "ARG-Primera Divisi\u00f3n Argentina": {
     "ClubElo": "ARG_1",
     "MatchHistory": "ARG",
     "SoFIFA": "[Argentina] Liga Profesional",
-    "FBref": "Argentine Primera División",
+    "FBref": "Argentine Primera Divisi\u00f3n",
     "ESPN": "arg.1",
     "FiveThirtyEight": "superliga",
     "WhoScored": "Argentina - Liga Profesional",
     "season_start": "Jun",
     "season_end": "Nov"
   },
-   "CZE-Czech First League": {
+  "CZE-Czech First League": {
     "ClubElo": "CZE_1",
     "MatchHistory": "CZE",
     "SoFIFA": "[Czech Republic] Fortuna Liga",
@@ -153,7 +164,7 @@
     "season_start": "Jul",
     "season_end": "Jun"
   },
-   "ECU-Liga Profesional Ecuador": {
+  "ECU-Liga Profesional Ecuador": {
     "ClubElo": "ECU_1",
     "MatchHistory": "ECU",
     "SoFIFA": "[Ecuador] Liga Pro",
@@ -164,18 +175,18 @@
     "season_start": "Feb",
     "season_end": "Nov"
   },
-   "PAR-Paraguayan Primera División": {
+  "PAR-Paraguayan Primera Divisi\u00f3n": {
     "ClubElo": "PAR_1",
     "MatchHistory": "PAR",
     "SoFIFA": "[Paraguay] Primera Divisi\u00f3n",
-    "FBref": "Paraguayan Primera División",
+    "FBref": "Paraguayan Primera Divisi\u00f3n",
     "ESPN": "par.1",
     "FiveThirtyEight": "primera-division-paraguaya",
     "WhoScored": "Paraguay - Primera Division",
     "season_start": "Feb",
     "season_end": "Nov"
   },
-   "POL-Ekstraklasa": {
+  "POL-Ekstraklasa": {
     "ClubElo": "POL_1",
     "MatchHistory": "POL",
     "SoFIFA": "[Poland] Ekstraklasa",
@@ -186,18 +197,18 @@
     "season_start": "Jul",
     "season_end": "Jun"
   },
-   "URU-Uruguayan Primera División": {
+  "URU-Uruguayan Primera Divisi\u00f3n": {
     "ClubElo": "URU_1",
     "MatchHistory": "URU",
     "SoFIFA": "[Uruguay] Primera Division",
-    "FBref": "Uruguayan Primera División",
+    "FBref": "Uruguayan Primera Divisi\u00f3n",
     "ESPN": "uru.1",
     "FiveThirtyEight": "primera-division-uruguaya",
     "WhoScored": "Uruguay - Primera Division",
     "season_start": "May",
     "season_end": "Nov"
   },
-   "JAP-J1 League": {
+  "JAP-J1 League": {
     "ClubElo": "JAP_1",
     "MatchHistory": "JAP",
     "SoFIFA": "[Japan] J1 League",
@@ -208,7 +219,7 @@
     "season_start": "Feb",
     "season_end": "Nov"
   },
-   "KOR-K League 1": {
+  "KOR-K League 1": {
     "ClubElo": "KOR_1",
     "MatchHistory": "KOR",
     "SoFIFA": "[Korea Republic] K League 1",
@@ -219,7 +230,7 @@
     "season_start": "Feb",
     "season_end": "Oct"
   },
-   "MEX-Liga MX": {
+  "MEX-Liga MX": {
     "ClubElo": "MEX_1",
     "MatchHistory": "MEX",
     "SoFIFA": "[Mexico] Liga MX",
@@ -230,7 +241,7 @@
     "season_start": "Jul",
     "season_end": "Jun"
   },
-   "BEL-Challenger Pro League": {
+  "BEL-Challenger Pro League": {
     "ClubElo": "BEL_2",
     "MatchHistory": "B2",
     "SoFIFA": "[Belgium] Challenger Pro League",
@@ -241,7 +252,7 @@
     "season_start": "Aug",
     "season_end": "May"
   },
-   "ENG-Championship": {
+  "ENG-Championship": {
     "ClubElo": "ENG_2",
     "MatchHistory": "E1",
     "SoFIFA": "[England] Championship",
@@ -252,18 +263,18 @@
     "season_start": "Jul",
     "season_end": "May"
   },
-   "ESP-Segunda División": {
+  "ESP-Segunda Divisi\u00f3n": {
     "ClubElo": "ESP_2",
     "MatchHistory": "SP1",
     "SoFIFA": "[Spain] La Liga 2",
-    "FBref": "Segunda División",
+    "FBref": "Segunda Divisi\u00f3n",
     "ESPN": "esp.2",
     "FiveThirtyEight": "la-liga-2",
-    "WhoScored": "Spain - Segunda División",
+    "WhoScored": "Spain - Segunda Divisi\u00f3n",
     "season_start": "Aug",
     "season_end": "Jun"
   },
-   "FRA-Ligue 2": {
+  "FRA-Ligue 2": {
     "ClubElo": "FRA_2",
     "MatchHistory": "F2",
     "SoFIFA": "[France] Ligue 2",
@@ -274,7 +285,7 @@
     "season_start": "Jul",
     "season_end": "Jun"
   },
-   "ITA-Serie B": {
+  "ITA-Serie B": {
     "ClubElo": "ITA_2",
     "MatchHistory": "I2",
     "SoFIFA": "[Italy] Serie B",
@@ -285,7 +296,7 @@
     "season_start": "Aug",
     "season_end": "Jun"
   },
-   "NED-Eerste Divisie": {
+  "NED-Eerste Divisie": {
     "ClubElo": "NED_2",
     "MatchHistory": "N2",
     "SoFIFA": "[Netherlands] Eredivisie 2",
@@ -296,18 +307,18 @@
     "season_start": "Aug",
     "season_end": "Jun"
   },
-   "GER-2. Fußball-Bundesliga": {
+  "GER-2. Fu\u00dfball-Bundesliga": {
     "ClubElo": "GER_2",
     "MatchHistory": "G2",
     "SoFIFA": "[Germany] 2. Bundesliga",
-    "FBref": "2. Fußball-Bundesliga",
+    "FBref": "2. Fu\u00dfball-Bundesliga",
     "ESPN": "ger.2",
     "FiveThirtyEight": "bundesliga-2",
     "WhoScored": "Germany - 2.Bundesliga",
     "season_start": "Aug",
     "season_end": "Jun"
   },
-   "AUS-A-League": {
+  "AUS-A-League": {
     "ClubElo": "AUS",
     "MatchHistory": "AU",
     "SoFIFA": "[Australia] A-League",
@@ -318,7 +329,7 @@
     "season_start": "Oct",
     "season_end": "May"
   },
-   "BUL-Bulgarian First League": {
+  "BUL-Bulgarian First League": {
     "ClubElo": "BUL",
     "MatchHistory": "B",
     "SoFIFA": "[Bulgaria] Bulgarian First League",
@@ -329,7 +340,7 @@
     "season_start": "Jul",
     "season_end": "Apr"
   },
-   "GRE-Super League Greece": {
+  "GRE-Super League Greece": {
     "ClubElo": "GRE",
     "MatchHistory": "G",
     "SoFIFA": "[Greece] Super League Greece",
@@ -340,18 +351,18 @@
     "season_start": "Aug",
     "season_end": "Mar"
   },
-   "HUN-Nemzeti Bajnokság I": {
+  "HUN-Nemzeti Bajnoks\u00e1g I": {
     "ClubElo": "HUN",
     "MatchHistory": "HU",
-    "SoFIFA": "[Hungary] Nemzeti Bajnokság I",
-    "FBref": "Nemzeti Bajnokság I",
+    "SoFIFA": "[Hungary] Nemzeti Bajnoks\u00e1g I",
+    "FBref": "Nemzeti Bajnoks\u00e1g I",
     "ESPN": "hun",
     "FiveThirtyEight": "hungarian-league",
-    "WhoScored": "Hungary - Nemzeti Bajnokság I",
+    "WhoScored": "Hungary - Nemzeti Bajnoks\u00e1g I",
     "season_start": "Jul",
     "season_end": "May"
   },
-   "KSA-Saudi Professional League": {
+  "KSA-Saudi Professional League": {
     "ClubElo": "KSA",
     "MatchHistory": "KSA",
     "SoFIFA": "[Saudi League] Saudi Professional League",
@@ -362,7 +373,7 @@
     "season_start": "Aug",
     "season_end": "May"
   },
-   "RUS-Russian Premier League": {
+  "RUS-Russian Premier League": {
     "ClubElo": "RUS",
     "MatchHistory": "RUS",
     "SoFIFA": "[Russia] Russian Premier League",
@@ -373,7 +384,7 @@
     "season_start": "Jul",
     "season_end": "May"
   },
-   "USA-Major League Soccer": {
+  "USA-Major League Soccer": {
     "ClubElo": "USA",
     "MatchHistory": "USA",
     "SoFIFA": "[United States of America] Major League Soccer",
@@ -384,16 +395,15 @@
     "season_start": "Feb",
     "season_end": "Dec"
   },
-   "TUR-Süper Lig": {
+  "TUR-S\u00fcper Lig": {
     "ClubElo": "TUR",
     "MatchHistory": "TUR",
-    "SoFIFA": "[Turkey] Süper Lig",
-    "FBref": "Süper Lig",
+    "SoFIFA": "[Turkey] S\u00fcper Lig",
+    "FBref": "S\u00fcper Lig",
     "ESPN": "tur",
     "FiveThirtyEight": "super-lig",
-    "WhoScored": "TUR - Süper Lig",
+    "WhoScored": "TUR - S\u00fcper Lig",
     "season_start": "Aug",
     "season_end": "May"
   }
 }
-
