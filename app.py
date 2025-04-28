@@ -27,7 +27,7 @@ app.config.from_pyfile('config.py')
 cache = Cache(app)
 app.cache = cache
 
-app.register_blueprint(match_blueprint, url_prefix='/match')
+app.register_blueprint(match_blueprint, url_prefix='/')
 app.register_blueprint(fbref_blueprint, url_prefix='/datatable')
 
 @app.route('/favicon.ico')

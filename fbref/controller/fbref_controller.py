@@ -14,7 +14,11 @@ container.register('service', FBrefService())
     
 service = container.resolve('service')
 
-@fbref_blueprint.route('/teamseason_base_stats/tournament/<tournament>/season/<season>', methods=['GET'])
-def get_teamseason_base_stats(tournament, season):
-    return service.get_teamseason_base_stats(tournament, season)
+@fbref_blueprint.route('/teamseason_base_stats/tournament/<tournament>/season/<season>/type/<stat_type>', methods=['GET'])
+def get_teamseason_base_stats(tournament, season, stat_type):
+    return service.get_teamseason_base_stats(tournament, season, stat_type, False)
+
+@fbref_blueprint.route('/teamseason_base_stats/tournament/<tournament>/season/<season>/type/<stat_type>/player', methods=['GET'])
+def get_teamseason_base_stats_player(tournament, season, stat_type):
+    return service.get_teamseason_base_stats(tournament, season, stat_type, True)
 

@@ -15,14 +15,12 @@ class FBrefService():
     def __init__(self):
         pass
 
-    def get_teamseason_base_stats(self, tournament, season):
+    def get_teamseason_base_stats(self, tournament, season, stat_type, player):
         tournament_data = None
         if league_dict_path.exists():
             with open(league_dict_path, 'r') as file:
                 league_data = json.load(file)
                 tournament_data = next((key for key, value in league_data.items() if value.get("ClubElo") == tournament), None)
-                #tournament_data = next((item for item in league_data if item.get("ClubElo") == tournament), None)
-                print(tournament_data)
 
         if tournament_data is None:
             match tournament:
@@ -42,6 +40,6 @@ class FBrefService():
                     raise ValueError(f"Unsupported tournament: {tournament}")
 
         season = sd.FBref(tournament_data, season)
-        json_str = season.read_team_season_stats().to_json()
+        json_str = season.read_player_season_stats(stat_type).to_json() if player else season.read_team_season_stats(stat_type).to_json()
         data = json.loads(json_str)
         return restructure_json(data)
